@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            color: var(--primary-color);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 2;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .intro {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Animação */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Iuri Dias Pereira</h1>
+            <p>Desenvolvedor Web Full Stack</p>
+            <p>Desenvolvedor Java - Spring Boot</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="sobre">
+            <h2>Sobre Mim</h2>
+            <div class="intro">
+                <img src="IMG_1483.JPG" alt="Foto de perfil" class="profile-img">
+                <div>
+                    <p>
+                        Desenvolvedor Java na criação de soluções digitais robustas, escaláveis e orientadas à experiência do usuário. Especialista em desenvolvimento back-end com foco em Java e Spring Boot, aliado a práticas modernas de front-end.
+Principais competências:
+Desenvolvimento de APIs RESTful utilizando Java 17+ e Spring Boot.
+Integração de microsserviços, autenticação via OAuth2/JWT e padrões como MVC e DDD.
+Experiência com bancos de dados relacionais e não relacionais (MySQL, PostgreSQL, MongoDB).
+Testes automatizados com JUnit, Insomnia e Postman.
+Versionamento de código com Git/GitHub e integração contínua (CI/CD).
+Criação de interfaces responsivas utilizando HTML, CSS, JavaScript e frameworks como ReactJS ou Thymeleaf.
+Aplicação de práticas ágeis (Scrum/Kanban), foco em performance, acessibilidade e entrega contínua.
+Sou movido por desafios técnicos e pela busca por soluções que entreguem valor real ao usuário. Acredito que a tecnologia é um agente de transformação, e meu objetivo é contribuir para projetos que aliam excelência técnica e propósito.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades">
+            <h2>Minhas Habilidades</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Front-end</h3>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>Responsive Design</li>
+                        
+                        
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Back-end</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Python, Django</li>
+                        <li>Java, Spring Boot</li>
+                        <li>APIs RESTful</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Outras Habilidades</h3>
+                    <ul>
+                        <li>Git e Versionamento</li>
+                        <li>Banco de Dados (SQL, NoSQL)</li>
+                        
+                        <li>Metodologias Ágeis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2>Projetos Recentes</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400?text=E-commerce+Platform" alt="E-commerce Platform" class="project-img">
+                    <div class="project-info">
+                        <h3>Plataforma E-commerce</h3>
+                        <p>Desenvolvimento completo de uma plataforma de e-commerce com carrinho de compras, pagamento integrado e painel administrativo.</p>
+                        <p><strong>Tecnologias:</strong> Java, JS, CSS, HTML5</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400?text=Task+Management+App" alt="Task Management App" class="project-img">
+                    <div class="project-info">
+                        <h3>Aplicativo de Gerenciamento de Tarefas</h3>
+                        <p>Aplicativo web para organização pessoal com arrastar e soltar, categorias e lembretes.</p>
+                        <p><strong>Tecnologias:</strong> Java, JS, CSS, HTML5</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400?text=Health+Tracker" alt="Health Tracker" class="project-img">
+                    <div class="project-info">
+                        <h3>Rastreador de Saúde</h3>
+                        <p>Aplicativo para monitoramento de saúde com gráficos, metas e integração com wearables.</p>
+                        <p><strong>Tecnologias:</strong> Java, JS, CSS, HTML, MySQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em contato!</p>
+                    <p><i class="fas fa-envelope"></i> Iuridp@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (61) 996909972</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="form-contato">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" required></textarea>
+                        </div>
+                        <button type="submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Iuri Dias Pereira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Suavizar rolagem para links âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Formulário de contato
+        const form = document.getElementById('form-contato');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+            form.reset();
+        });
+
+        // Efeito de aparecimento suave ao rolar
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', checkSections);
+        
+        function checkSections() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                
+                if(sectionTop < triggerBottom) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Executar uma vez no carregamento
+        checkSections();
+    </script>
+</body>
+</html>
